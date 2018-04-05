@@ -1,0 +1,48 @@
+<form ng-init='vm.init()'>
+  <div ng-if="vm.message" class="alert alert-success" role="alert">
+    <p>{{ vm.message }}</p>
+  </div>
+  <div ng-if="vm.error" class="alert alert-danger" role="alert">
+    {{vm.error}}
+  </div>
+  <div class="container">
+    <div class="form-group row">
+      <label for="userForename" class="col-sm-2 col-form-label">Prénom</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="userForename" placeholder="Prenom" ng-model="vm.user.userForename" required ng-disabled=vm.disabled>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="userSurename" class="col-sm-2 col-form-label">Nom</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="userSurename" placeholder="Nom" ng-model="vm.user.userSurname" required ng-disabled=vm.disabled>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="input-file" class="col-sm-2 col-form-label">Avatar</label>
+      <div class="col-sm-10">
+        <img ng-show="filepreview" ng-src="{{filepreview}}" class="img-responsive rounded-circle avatar" />
+        <img ng-show="!filepreview" ng-src="{{vm.user.userAvatar}}" class="img-responsive rounded-circle avatar" />
+        <label ng-show='vm.disabled == false' onclick="document.querySelector('#input-file').click()" style='cursor:pointer;'>{{(type == 'PUT' ? "Modifier" : "Ajouter")}} l'avatar </label>
+        <input id='input-file' type="file" fileinput="vm.myFile" filepreview="filepreview" style="display: none" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="userEmail" class="col-sm-2 col-form-label">Adresse email</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control {{state}}" id="userEmail" placeholder="email@email.com" ng-model="vm.user.userEmail" required ng-disabled=vm.disabled>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="userPhone" class="col-sm-2 col-form-label">Téléphone</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="userPhone" placeholder="08 36 65 65 65" ng-model="vm.user.userPhone" required ng-disabled=vm.disabled>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" ng-show='vm.disabled == false' ng-click="vm.addUser()" style='margin-bottom:1em;'>{{(type == 'PUT' ? "Modifier" : "Créer")}} l'utlisateur</button>
+      </div>
+    </div>
+  </div>
+</form>

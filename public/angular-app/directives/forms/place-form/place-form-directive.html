@@ -1,0 +1,122 @@
+<form ng-init='vm.init()'>
+  <div ng-if="vm.message" class="alert alert-success" role="alert">
+    <p>{{ vm.message }}</p>
+  </div>
+  <div ng-if="vm.error" class="alert alert-danger" role="alert">
+    {{vm.error}}
+  </div>
+  <div class="container">
+    <form>
+      <div class="form-group row">
+        <label for="userName" class="col-sm-2 col-form-label">Nom d'utlisateur</label>
+        <div class="col-sm-5 col-sm-offset-1">
+          <input type="text" class="form-control" id="userForename" placeholder="Prenom" ng-model="vm.user.userForename" required ng-disabled='true'>
+        </div>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="userSurename" placeholder="Nom" ng-model="vm.user.userSurname" required ng-disabled='true'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="placeName" class="col-sm-2 col-form-label">Nom du lieu</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="placeName" placeholder="..." ng-model="vm.place.placeName" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="input-file" class="col-sm-2 col-form-label">Photo du lieux</label>
+        <div class="col-sm-10">
+          <img ng-show="vm.filepreview" ng-src="{{vm.filepreview}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <img ng-show="!vm.filepreview" ng-src="{{vm.place.placeImages ? vm.place.placeImages : 'http://localhost:3000/images/avatar.png'}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <label ng-show='vm.disabled == false' onclick="document.querySelector('#input-file').click()" style='cursor:pointer;'>{{(type == 'PUT' ? "Modifier la" : "Ajouter une")}} photo. </label>
+          <input id='input-file' type="file" fileinput="vm.myFile" filepreview="vm.filepreview" style="display: none" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Adresse</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="l1" placeholder="12 boulevard de la liberation" ng-model="vm.place.adress.l1" required ng-disabled=vm.disabled>
+          <p class='form-p'>Supplément d'adresse</p>
+          <input type="text" class="form-control" id="l2" placeholder="Res. Messonier" ng-model="vm.place.adress.l2" required ng-disabled=vm.disabled>
+          <p class='form-p'>Code Postal</p>
+          <input type="text" class="form-control" id="cp" placeholder="93200" ng-model="vm.place.adress.cp" required ng-disabled=vm.disabled>
+          <p class='form-p'>Ville</p>
+          <input type="text" class="form-control" id="city" placeholder="St-Denis" ng-model="vm.place.adress.city" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="typeOfContact" class="col-sm-2 col-form-label">Type de contact</label>
+        <div class="col-sm-10">
+          <select style='display:inline-block' ng-model="vm.place.typeOfContact">
+            <option ng-disabled=vm.disabled value="Propriétaire">Propriétaire</option>
+            <option ng-disabled=vm.disabled value="Responsable">Responsable</option>
+            <option ng-disabled=vm.disabled value="Employé">Employé</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="typeOfPlace" class="col-sm-2 col-form-label">Type de lieux</label>
+        <div class="col-sm-10">
+          <select ng-model="vm.place.typeOfPlace">
+            <option ng-disabled=vm.disabled value="Privé">Privé</option>
+            <option ng-disabled=vm.disabled value="Institution">Institution</option>
+            <option ng-disabled=vm.disabled value="Professionel">Professionel</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="size" class="col-sm-2 col-form-label">Taille</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="size" placeholder="#m2" ng-model="vm.place.size" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="height" class="col-sm-2 col-form-label">Hauteur</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="height" placeholder="#m" ng-model="vm.place.height" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="capacity" class="col-sm-2 col-form-label">Capacité maximale</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="capacity" placeholder="25 personnes" ng-model="vm.place.capacity" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="facilities" class="col-sm-2 col-form-label">Facilités</label>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <input class="pcheck" type="checkbox" ng-model='vm.facilities.wifi' ng-disabled=vm.disabled ng-true-value="true" ng-false-value="false">Accès WIFI.
+        </div>
+        <div class="offset-sm-2 col-sm-10">
+          <input class="pcheck" type="checkbox" ng-model='vm.facilities.handicap' ng-disabled=vm.disabled ng-true-value="true" ng-false-value="false">Accès handicapé.
+        </div>
+        <div class="offset-sm-2 col-sm-10">
+          <input class="pcheck" type="checkbox" ng-model='vm.facilities.electricity' ng-disabled=vm.disabled ng-true-value="true" ng-false-value="false">Electricité.
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="licenses" class="col-sm-2 col-form-label">Licenses</label>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <input class="pcheck" type="checkbox" ng-model='vm.licenses.spec' ng-disabled=vm.disabled ng-true-value="true" ng-false-value="false">Entrepreneur du spectacle.
+        </div>
+        <div class="offset-sm-2 col-sm-10">
+          <input class="pcheck" type="checkbox" ng-model='vm.licenses.drink' ng-disabled=vm.disabled ng-true-value="true" ng-false-value="false">Boissons.
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="divers" class="col-sm-2 col-form-label">Divers</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" placeholder="..." id="divers" rows="3" ng-model="vm.place.misc" ng-disabled=vm.disabled></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-show='vm.disabled == false' ng-click="vm.addPlace()" style='margin-bottom:1em;'>{{(type == 'PUT' ? "Modifier" : "Créer")}} le lieux</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</form>

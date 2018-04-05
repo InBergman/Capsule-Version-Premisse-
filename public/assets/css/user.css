@@ -1,0 +1,82 @@
+.drp-btn {
+  color: white !important;
+  margin-right: 1em;
+}
+
+.nav-tabs {
+  background-color: #ECEEEF;
+  font-weight: bold;
+  position: relative;
+  padding-top: 0.6em;
+  bottom: 0;
+}
+
+.media {
+  background-color: #ECEEEF;
+}
+.avatar {
+  margin: 0.5em;
+  margin-left: 2em;
+  width: 4em;
+  height: 4em;
+  border: 0.25em solid grey;
+  box-shadow: 0 0.25em 1em 0 rgba(0, 0, 0, 0.2), 0 0.25em 1em 0 rgba(0, 0, 0, 0.19);
+}
+
+.userImage {
+  margin: 1em;
+  margin-left: 2em;
+  width: 8em;
+  height: 8em;
+  border: 0.25em solid grey;
+  box-shadow: 0 0.25em 1em 0 rgba(0, 0, 0, 0.2), 0 0.25em 1em 0 rgba(0, 0, 0, 0.19);
+}
+
+.userLabel {
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.userInfos {
+  margin-bottom: 0.75em;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.newIcon {
+    color:red;
+      font-style: italic;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.dropdown-menu li {
+    cursor: pointer;
+}
+
+.jumbotron {
+  margin-bottom:0;
+}
+
+#hide input[type=file] {
+display:none;
+margin:10px;
+}
+#hide input[type=file] + label {
+display:inline-block;
+margin:20px;
+padding: 4px 32px;
+background-color: #FFFFFF;
+border:solid 1px #666F77;
+border-radius: 6px;
+color:#666F77;
+}
+#hide input[type=file]:active + label {
+background-image: none;
+background-color:#2D6C7A;
+color:#FFFFFF;
+}

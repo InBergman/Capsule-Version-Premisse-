@@ -1,0 +1,124 @@
+<form ng-init='vm.init()'>
+  <div ng-if="vm.message" class="alert alert-success" role="alert">
+    <p>{{ vm.message }}</p>
+  </div>
+  <div ng-if="vm.error" class="alert alert-danger" role="alert">
+    {{vm.error}}
+  </div>
+  <div class="container">
+    <form>
+      <div class="form-group row">
+        <label for="userName" class="col-sm-2 col-form-label">Nom d'utlisateur</label>
+        <div class="col-sm-5 col-sm-offset-1">
+          <input type="text" class="form-control" id="userForename" placeholder="Prenom" ng-model="vm.user.userForename" required ng-disabled='true'>
+        </div>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="userSurename" placeholder="Nom" ng-model="vm.user.userSurname" required ng-disabled='true'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="artistName" class="col-sm-2 col-form-label">Nom d'artiste</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="artistName" placeholder="{{vm.user.userForename}}" ng-model="vm.artist.artistName" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="input-file" class="col-sm-2 col-form-label">Avatar</label>
+        <div class="col-sm-10">
+          <img ng-show="vm.filepreview" ng-src="{{vm.filepreview}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <img ng-show="!vm.filepreview" ng-src="{{vm.artist.artistAvatar ? vm.artist.artistAvatar : 'http://localhost:3000/images/avatar.png'}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <label ng-show='vm.disabled == false' onclick="document.querySelector('#input-file').click()" style='cursor:pointer;'>{{(type == 'PUT' ? "Modifier" : "Ajouter")}} l'avatar </label>
+          <input id='input-file' type="file" fileinput="vm.myFile" filepreview="vm.filepreview" style="display: none" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Adresse</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="l1" placeholder="12 boulevard de la liberation" ng-model="vm.artist.adress.l1" required ng-disabled=vm.disabled>
+          <p class='form-p'>Supplément d'adresse</p>
+          <input type="text" class="form-control" id="l2" placeholder="Res. Messonier" ng-model="vm.artist.adress.l2" required ng-disabled=vm.disabled>
+          <p class='form-p'>Code Postal</p>
+          <input type="text" class="form-control" id="cp" placeholder="93200" ng-model="vm.artist.adress.cp" required ng-disabled=vm.disabled>
+          <p class='form-p'>Ville</p>
+          <input type="text" class="form-control" id="city" placeholder="St-Denis" ng-model="vm.artist.adress.city" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="MDA" class="col-sm-2 col-form-label">N° d’ordre MDA</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="MDA" placeholder="A123456" ng-model="vm.artist.numMda" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="siret" class="col-sm-2 col-form-label">Siret</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="siret" placeholder="FR63551445030018" ng-model="vm.artist.siret" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="statut" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="statut" placeholder="artistes-auteur, createur..." ng-model="vm.artist.statut" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="univers" class="col-sm-2 col-form-label">Univers artistique</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" placeholder="Description de son univers" id="univers" rows="3" ng-model="vm.artist.univers" required ng-disabled=vm.disabled></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="artwork" class="col-sm-2 col-form-label">Oeuvres</label>
+        <div class="col-sm-10">
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-title expand">
+           <div class="right-arrow pull-right">+</div>
+          <a href="#">Collapsible Group 1</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="panel-title expand">
+            <div class="right-arrow pull-right">+</div>
+          <a href="#">Collapsible Group 2</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="panel-title expand">
+            <div class="right-arrow pull-right">+</div>
+          <a href="#">Collapsible Group 3</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+  </div> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-show='vm.disabled == false' ng-click="vm.addArtist()" style='margin-bottom:1em;'>{{(type == 'PUT' ? "Modifier" : "Créer")}} l'artiste</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</form>

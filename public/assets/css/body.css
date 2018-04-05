@@ -1,0 +1,24 @@
+html {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+    margin: 0;
+}
+
+
+.placeCheckbox {
+    background-color: #EEEEEE;
+    border: 0px solid black;
+    color: grey;
+}
+
+
+.pcheck {
+  margin-right: 1em;
+  /*height: 2em;*/
+}

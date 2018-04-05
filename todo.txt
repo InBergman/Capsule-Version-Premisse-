@@ -1,0 +1,11 @@
+TODO : 
+
+- [x] Ajouter les Object(Admin) des Referent dans la capsule.
+- [x] Faire le check d’erreur des input dans la partie créneaux.
+- [x] Refaire le design de la partie initialisation de la capsule.
+- [x] Faire le check d’erreur des input dans la partie initialisation de la capsule
+- [x] Ajouter les créneaux a la BDD ( POST )
+- [x] Pouvoir Modifier les informations de base d'une capsule ( PUT )
+- [x] Pouvoir Modifier les créneaux ( PUT )
+- [x] Pouvoir passer l’état d’une capsule de WIP a READY
+- [x] Pouvoir Supprimer une capsule en y ajoutant une raison.

@@ -1,0 +1,23 @@
+<navigation-directive></navigation-directive>
+
+<div class="container">
+  <div class="row">
+    <div ng-repeat="user in vm.users" class="col-sm-6 col-md-4 col-lg-3 mt-4">
+      <div class="card card-inverse card-info">
+        <catalogue
+         title='user.userForename + " " + user.userSurname'
+         email='user.userEmail'
+         image='user.userAvatar'
+         phone='user.userPhone'
+         imagepath='vm.imagePath'
+         lookpath='vm.lookpath'
+         date='vm.formatDate(user.updated)'
+         path='#!/users/'
+         show='details'
+         id='user._id'
+         obj="user">
+        </catalogue>
+      </div>
+    </div>
+  </div>
+</div>

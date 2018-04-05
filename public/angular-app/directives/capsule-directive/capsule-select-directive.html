@@ -1,0 +1,110 @@
+<center>
+	<div class="container">
+	    <div>
+	        <!-- Card Projects -->
+	        <div class="col-md-6 col-md-offset-3">
+	            <div class="card">
+	                <div class="card-image">
+
+						<div ng-if="vm.success" class="alert alert-success" role="alert">
+						{{ vm.success }}
+						</div>
+										
+							<div ng-if="vm.error" class="alert alert-danger" role="alert">
+								{{ vm.error }}
+							</div>
+
+	                    <h3><a href="/#!/capsules/{{capsule._id}}" style="color:rgb(255, 153, 136)">{{capsule.name}}</a></h3>
+	                </div>
+						  <div class="text-center ">
+						      <a class="btn btn-lg btn-primary" 
+						      	style="background-color:#333333; color:#ffffff" 
+						      	data-toggle="modal" 
+						      	data-target="#largeModal">Modifier : {{capsule.name}}</a>
+						  </div>
+						  <hr>
+
+						<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+						
+							<div class="modal-dialog modal-lg">
+						
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+										<h4 class="modal-title" id="myModalLabel">Capsule : {{capsule.name}}</h4>
+									</div>
+									<div ng-if="vm.modalError" class="alert alert-danger" role="alert">
+										{{ vm.modalError }}
+									</div>
+									<div class="modal-body">
+												Nom de votre capsule:
+												<br><br>
+												<input type="text" class="form" placeholder="Nom de la capsule" ng-model="allForm.name">
+												<br>
+												<br> Séléctionnez vos ou votre référents :
+												<br>
+												<div class="checkbox" ng-repeat="admin in admins">
+													<input type="checkbox" ng-model="admin.selected" ng-true-value="'{{admin.username}}'" ng-false-value="''" id="'{{admin.username}}'"
+													/> {{admin.username}}
+												</div>
+												Séléctionnez le type de capsule :<br><br>
+												 <select class="selectpicker" ng-model="allForm.type">
+													<option>Privée</option>
+													<option>Institutionnel</option>
+													<option>Classique</option>
+												</select>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" style="background-color:#333333" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary" style="background-color:#333333" ng-click="submit(admins, capsule)" data-dismiss="modal"> Save changes </button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+										 Etat d'avancement.
+										<div class="progress" style="margin:2%">
+											<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:rgb(72, 72, 75)">
+												<center>70%</center>
+											</div>
+										</div>
+										
+	                <div class="card-action">
+	                    <a target="new_blank"
+	                    	ng-if="capsule.status != 'Cancel'"
+	                    	style="color:rgb(139, 179, 204);cursor:pointer">
+	                    	Modifier
+	                    </a>
+	                    <a target="new_blank"
+	                    	ng-if="capsule.status != 'Cancel'" 
+	                    	style="color:rgb(139, 179, 204);cursor:pointer"
+	                    	ng-click="vm.textArea = true">
+	                    	Annuler
+	                    </a>
+	                    <p style="color:rgb(255, 121, 118)"
+	                    	ng-if="capsule.status == 'Cancel'">
+	                    		<span style="color:#333333">
+	                    		Cause d'annulation :</span> {{capsule.cancelReason}}
+	                    	</p>
+	                    <span ng-if="vm.textArea">
+	                    	<p style="color:rgb(255, 121, 118)">
+	                    		Indiquez la raison pour laquel 
+	                    		vous souhaitez annuler cetcapsule
+	                    	</p>
+	                    	<textarea 	class="form-control" 
+	                    				id="capsuleTextArea" 
+	                    				ng-model="vm.cancelContent">
+	                    	</textarea>
+	                    	<button class="btn btn-xs btn-primary" 
+	                    			style="border:none;cursor:pointer;background-color:rgb(255, 121, 118)"
+	                    			ng-click="vm.cancelConfirm(vm.cancelContent, capsule)">
+	                    		Comfirmer l'annulation
+	                    	</button>
+	                    </span>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</center>

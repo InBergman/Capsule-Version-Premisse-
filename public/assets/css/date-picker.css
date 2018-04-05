@@ -1,0 +1,107 @@
+.clear{
+  clear:both;
+}
+.date-picker-container{
+  position:relative;
+  width:300px;
+  font-family:helvetica;
+  background:#eee;
+  margin:auto;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.date-container{
+  background:#009688;
+  text-align:center;
+  color:#fff;
+}
+.date-container label{
+  display:block;
+  text-align:center;
+}
+.day,.year,.month{
+   padding:10px;
+  color:#eee;
+}
+.day{
+  background:#008D7F;
+}
+.year,.month{
+  font-size:30px;
+}
+.date{
+  font-size:110px;
+}
+
+.calendar{
+  color:#777;
+  text-align:center;
+  padding:0 10px;
+}
+.month-year{
+  padding:5px;
+  color:#666;
+  font-weight:bold;
+}
+.week.days label{
+  font-weight:bold;
+}
+.week label{
+  font-size:14px;
+  display: block;
+  width: 40px;
+  float: left;
+  border-radius: 50%;
+  height: 40px;
+  line-height: 40px;
+}
+.week.dates label:not(:empty){
+  cursor:pointer;
+}
+.week.dates label:not(:empty):hover,.week.dates label.active:not(:empty){
+  background:rgba(0, 150, 136, 0.25);
+  color:#009688;
+}
+.calendar-container{
+  overflow:hidden; 
+  height:300px;
+  user-select:none;
+}
+.footer{
+  padding:10px 10px 20px;
+}
+.footer a.action{
+  color:#009688;
+  font-weight:bold;
+  text-decoration:none;
+  display:inline-block;
+  width:32%;
+  text-align:center;
+}
+
+.active {
+  /*background-color: red;*/
+  color: red;
+}
+
+.social-section {
+    font-family: 'Paytone One', sans-serif;
+    padding-top:20px;
+    padding-bottom: 60px;
+    color:black;
+    text-align: center;
+    background:white;
+}
+h3{
+    font-family: 'Paytone One', sans-serif;
+}
+
+.hover{
+  color:black;
+}
+.hover{
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ padding:18px;
+ margin-top: -25px;
+}

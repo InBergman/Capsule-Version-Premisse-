@@ -1,0 +1,151 @@
+<navigation-directive></navigation-directive>
+<div class='head-user' ng-init="vm.initRequest()">
+  <div class="media">
+    <div class="media-body">
+      <center><h4 class="media-heading userLabel">Profile Capsule: {{vm.capsule.name}}<center/>
+        <div class="span2 drp-btn" style='float:right;'>
+    <div class="btn-group">
+        <a data-toggle="dropdown">
+            <i class="fa fa-cog" style='color:#2FA902;font-size:1.5em;cursor: pointer;'></i>
+        </a>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li><a ng-show='!vm.capsuleBis.status.isArtist' ng-click="vm.activate('artiste')"> Activer l'espace artiste. </a></li>
+      <li><a ng-show='!vm.capsuleBis.status.isClient' ng-click="vm.activate('client')"> Activer l'espace client.</a></li>
+      <li><a ng-show='!vm.capsuleBis.status.isPlace' ng-click="vm.activate('lieux')">   Activer l'espace lieux.   </a></li>
+      <li><a ng-show='!vm.capsuleBis.status.isDate' ng-click="vm.activate('date')">   Activer l'espace crenaux.   </a></li>
+    </ul>
+  </div>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a ng-click="vm.show('détails')" class="vm.isActiveTab('détails') nav-link" data-toggle="tab" role="tab">Details</a>
+  </li>
+  <li ng-show='vm.capsuleBis.status.isArtist || vm.capsule.artist.length > 0' class="nav-item">
+    <a ng-click="vm.show('artiste')" class="vm.isActiveTab('artiste') nav-link" data-toggle="tab" role="tab">Espace Artiste</a>
+  </li>
+  <li ng-show='vm.capsuleBis.status.isPlace || vm.capsule.place.length > 0' class="nav-item">
+    <a ng-click="vm.show('lieux')" class="vm.isActiveTab('lieux') nav-link" data-toggle="tab" role="tab">Espace Lieux</a>
+  </li>
+  <li ng-show='vm.capsuleBis.status.isClient' class="nav-item">
+    <a ng-click="vm.show('client')" class="vm.isActiveTab('client') nav-link" data-toggle="tab" role="tab">Espace Client</a>
+  </li>
+  <li ng-show='vm.capsuleBis.status.isDate || vm.capsule.daysIntervals.length > 0' class="nav-item">
+    <a ng-click="vm.show('date')" class="vm.isActiveTab('date') nav-link" data-toggle="tab" role="tab">Espace Crenaux</a>
+  </li>
+</ul>
+</div>
+</div>
+<div class="container">
+  <span ng-show='vm.toShow == "détails"'>
+<br>
+  <div class="text-center">
+      <h3>Avancement de la capsule</h3>
+      <br>
+      <a class="btn btn-lg btn-primary" style="color:aliceblue" data-toggle="modal" data-target="#largeModal">Capsule : {{vm.capsule.name}}</a>
+  </div>
+<br>
+
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title" id="myModalLabel">Capsule : {{vm.capsule.name}}</h4>
+    </div>
+    <div class="modal-body">
+      De l'art. ( Artiste(e)s + Oeuvre(s) )
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+          <center>70%</center>
+        </div>
+      </div>
+      De l'espace. ( Lieu )
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+          <center>70%</center>
+        </div>
+      </div>
+      Du temps. ( créneaux )
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:30%">
+          <center>70%</center>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<span class="badge badge-pill badge-primary">Créé le {{vm.capsule.created | date:"MM/dd/yyyy 'à' h:mma"}}</span>
+<span class="badge badge-pill badge-secondary">{{vm.capsule.createdBy}}</span>
+<span class="badge badge-pill badge-success">{{vm.capsule.type}}</span>
+
+<span class="badge badge-pill badge-danger">
+         Référent(s) :&nbsp&nbsp
+      <span ng-repeat="people in vm.capsule.peopleInCharge">
+        {{people.username}}&nbsp
+      </span>
+</span>
+
+
+<span class="badge badge-pill badge-info">{{vm.capsule.place}}</span>
+
+<span ng-if="vm.capsule.artist.length > 0">
+  <h4>Current Artist</h4>
+  <span ng-repeat="artist in vm.capsule.artist">
+    <div class="row">
+          <div class="col-xs-6 col-xs-offset-3">
+              <div class="card"><br>
+                      <h3>&nbsp Artiste : {{artist.artistName}}
+                                          {{artist.artistForename}}
+                      </h3>          &nbsp({{artist.artistSurname}})
+
+                  <div class="card-content">
+                      <p ng-if="artist.adress.city">&nbsp Ville: {{artist.adress.city}}</p>
+                      <p ng-if="artist.siret">&nbsp Numero de Siret: {{artist.siret}}</p>
+                  <div class="card-action">
+                      <br>
+              Retirer cet Artiste de la Capsule: <input type="checkbox"
+                                               ng-model="artist.selected"
+                                               ng-true-value="'{{artist.artistName}}'"
+                                               ng-false-value="''"
+                                               id="'{{artist.artistName}}'">
+                      <button class="btn btn-block" ng-click="vm.delete(vm.capsule)">Confirmer</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </span>
+</span>
+
+</span>
+</span>
+
+<span ng-show='vm.toShow == "artiste"'>
+    <capsule-actors
+                  users     ='vm.users'
+                  who       ='vm.artistWho'>
+    </capsule-actors>
+  </span>
+
+
+<span ng-show='vm.toShow == "client"'>
+  	<p>CAPSULE CLIENT</p>
+
+  </span>
+<span ng-show='vm.toShow == "lieux"'>
+    <capsule-actors 
+                   users='vm.users' 
+                   who='vm.lieuWho'>
+    </capsule-actors>
+</span>
+
+<span ng-show='vm.toShow == "date"'>
+    <capsule-actors who = 'vm.dateWho'></capsule-actors>
+</span>

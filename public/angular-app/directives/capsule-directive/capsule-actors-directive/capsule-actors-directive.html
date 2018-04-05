@@ -1,0 +1,202 @@
+<div ng-if="success" class="alert alert-success" role="alert">
+  {{ success }}
+</div>
+
+<div ng-if="error" class="alert alert-danger" role="alert">
+  {{ error }}
+</div>
+<span ng-if="who == 'artist' ">
+	<div class="container" ng-repeat="user in users">
+		<span ng-if="user.artist">
+	    <div class="row">
+	        <div class="col-xs-6 col-xs-offset-3">
+	            <div class="card"><br>
+	                    <h3>&nbsp Artiste : {{user.artist.artistName}} 
+                                          	{{user.artist.artistForename}}
+                      </h3>&nbsp 			({{user.artist.artistSurname}})
+                  
+	                <div class="card-content">
+                      <p ng-if="user.artist.adress.city">&nbsp Ville: {{user.artist.adress.city}}</p>
+	                    <p ng-if="user.artist.siret">&nbsp Numero de Siret: {{user.artist.siret}}</p>
+	                <div class="card-action">
+	                    <a href="#" target="new_blank">Link</a>
+	                    <a href="#" target="new_blank">Link</a>
+	                    <a href="#" target="new_blank">Link</a>
+	                    <a href="#" target="new_blank">Link</a>
+	                    <a href="#" target="new_blank">Link</a>
+	                    <br>
+					    Selectionner cet Artiste: <input type="checkbox" 
+                                               ng-model="user.artist.selected"
+                                               ng-true-value="'{{user.artist.artistName}}'" 
+                                               ng-false-value="''"
+                                               id="'{{user.artist.artistName}}'">
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+  </div>
+  </span>
+	</div> <br><br>
+  <button class="btn btn-block" ng-click="vm.submitArtist(users)">Confirmer</button>
+</span>
+
+
+<span ng-if="who == 'lieu' ">
+  <div class="container" ng-repeat="user in users">
+    {{user.place}}
+    <span ng-if="user.place">
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <div class="card">
+            <br>
+            <h3>&nbsp place : {{user.place.placeName}}
+            </h3>&nbsp ({{user.place.typeOfPlace}})
+            <img src="" alt="">
+            <div class="card-content">
+              <p ng-if="user.place.typeOfContact">&nbsp Ville: {{user.place.typeOfContact}}</p>
+              <p ng-if="user.place.height">&nbsp Numero de Siret: {{user.place.height}}</p>
+              <p ng-if="user.place.size">&nbsp Numero de Siret: {{user.place.size}}</p>
+              <p ng-if="user.place.capacity">&nbsp Numero de Siret: {{user.place.capacity}}</p>
+              <p ng-if="user.place.facilities">&nbsp Numero de Siret: {{user.place.facilities}}</p>
+              <div class="card-action">
+                <br> Selectionner cet place:
+                <input type="checkbox" ng-model="user.place.selected" ng-true-value="'{{user.place.placeName}}'"
+                  ng-false-value="''" id="'{{user.place.placeName}}'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  </div>
+  <br>
+  <br>
+  <button class="btn btn-block" ng-click="vm.submitPlace(users)">Confirmer</button>
+</span>
+
+<span ng-if="who == 'date'">
+  <br>
+<div ng-init="init()" ng-if="!creneauxExist">
+<div  class="date-picker-container">
+  <div class="date-container">
+    <label class="day">Vos dates</label><br>
+    <label class="years">Vous vous apprêtez à choisir les dates <br> où se produiront les créneaux.</label><br>
+  </div>
+  <div class="calendar-container">
+    <div class="calendar">
+      <div class="month-year"> 					
+
+      	<h4 style="float:left; color:red; cursor:pointer" ng-click="sub()"> < </h4>  
+  			<span>{{allTimeInfo.month}}</span> {{allTimeInfo.year}} 	
+  			<h4 style="float:right; color:red; cursor:pointer" ng-click="add()"> > </h4> 
+      	</div><br>
+
+      <div class="days week" ng-repeat="day in allTimeInfo.weekdays"> <label>{{day}}</label></div>
+      	<div class="dates week" ng-repeat="y in allTimeInfo.daysInMonth">
+        <div ng-repeat="daysNum in y track by $index" ng-click="select(daysNum)"
+        											  ng-class="{active: daysNum.class}">  
+        <span ng-if="daysNum.num === 0">  <label></label> </span>
+        <span ng-if="daysNum.num !== 0">  <label >{{daysNum.num}}</label></span>
+
+	     </div>
+      </div>
+    </div>
+
+    <div class="clear">		</div>
+    <div class="calendar">	</div>
+  </div>
+  <div class="footer">
+    <br><center><a id="action-set" style="cursor:pointer" ng-click="vm.confDate = true" class="action">Valider</a></center>
+  </div>
+</div>
+
+  <span ng-show="vm.confDate == true">
+  	<br><br><br>
+
+  <center>
+  	<div style="display:inline-block;position:static;"
+  		 ng-repeat="cards in persistDate"
+  		 class="date-picker-container hover"> 
+    <div class="date-container">
+      <label class="day"> Le {{cards.day}} {{cards.month}} {{cards.year}}</label>
+    </div>
+      <div class="calendar">
+      	<label>Nombre de participant: <input 	class="form-control bfh-number" 
+      											type="number" 
+      											value="0" 
+      											min="0" max="64"  
+      											ng-model="cards.numPerson"></label>
+
+
+  	<label for="example-time-input" class="col-2 col-form-label">Départ des créneaux</label>
+  <div class="input-group">
+      <input type="number" min="0" max="24" class="form-control" placeholder="Heures" ng-model="cards.capsuleBegin.hours"/>
+      <span class="input-group-addon">-</span>
+      <input type="number" min="0" max="60" class="form-control" placeholder="Minutes" ng-model="cards.capsuleBegin.minutes"/>
+  </div>
+
+  <label for="example-time-input" class="col-2 col-form-label">Fin des créneaux</label>
+  <div class="input-group">
+      <input type="number" min="0" max="24" class="form-control" placeholder="Heures" ng-model="cards.capsuleEnd.hours"/>
+      <span class="input-group-addon">-</span>
+      <input type="number" min="0" max="60" class="form-control" placeholder="Minutes" ng-model="cards.capsuleEnd.minutes"/>
+  </div>
+
+  <label for="example-time-input" class="col-2 col-form-label">Durée de chaques créneaux</label>
+  <div class="input-group">
+      <input type="number" min="0" max="24" class="form-control" placeholder="Heures" ng-model="cards.capsuleDuration.hours"/>
+      <span class="input-group-addon">-</span>
+      <input type="number" min="0" max="60" class="form-control" placeholder="Minutes" ng-model="cards.capsuleDuration.minutes"/>
+  </div>
+
+  <label for="example-time-input" class="col-2 col-form-label">Interval entre chaques créneaux</label>
+  <div class="input-group">
+      <input type="number" min="0" max="24" class="form-control" placeholder="Heures" ng-model="cards.capsuleInterval.hours"/>
+      <span class="input-group-addon">-</span>
+      <input type="number" min="0" max="60" class="form-control" placeholder="Minutes" ng-model="cards.capsuleInterval.minutes"/>
+  </div>
+
+
+      </div>
+  </div> <br><br>
+      <br><center><a id="action-set" style="font-size:30px;cursor:pointer" ng-click="valideTime()" class="action">Valider</a></center>
+    </div>
+    </div>
+
+
+<!-- <div class="dates week" ng-repeat="y in allTimeInfo.daysInMonth">
+        <div ng-repeat="daysNum in y track by $index" ng-click="select(daysNum)"
+ -->
+
+<div ng-if="creneauxExist">
+      <a style="font-size:25px;cursor:pointer" ng-click="modifCreneaux()" class="action">Modifier</a>
+  <br><br><br>
+  <center>
+    <div style="display:block;position:static;"
+       ng-repeat="days in capsule.daysIntervals"
+       class="date-picker-container hover"> 
+        <span ng-repeat="creneaux in days.creneaux track by $index">
+       
+      <div class="day"><h3> Le {{creneaux.day}} {{creneaux.month}} {{creneaux.years}}</h3> </div>
+
+    <div class="date-container">
+       <br>
+
+       La capsule demarre à {{creneaux.capsuleBegin.hours}} : {{creneaux.capsuleBegin.minutes}} <br>
+       et fini à {{creneaux.capsuleEnd.hours}} : {{creneaux.capsuleEnd.minutes}} <br>
+       Durée des pause {{creneaux.capsuleInterval.hours}} : {{creneaux.capsuleInterval.minutes}}<br>
+       Durée des creneaux {{creneaux.capsuleDuration.hours}} : {{creneaux.capsuleDuration.minutes}}<br>
+
+    <h4 class="day">Horaires individuels des Creneaux :</h4><br> <span ng-repeat="creneauxInfo in creneaux.creneaux">
+        Le creneaux n º {{$index + 1}} demarre à {{creneauxInfo.hours}} : {{creneauxInfo.minutes}} <br>
+       </span><br>
+
+       <h4 class="day">Horaires individuels des Pauses (intervals) :</h4> <br> <span ng-repeat="intervalInfo in creneaux.interval">
+        Pause n º {{$index + 1}} demarre à {{intervalInfo.hours}} : {{intervalInfo.minutes}} <br>
+       </span><br>
+    </div><br>
+  </div> <br>
+</div>
+
+  </span>
+</center>

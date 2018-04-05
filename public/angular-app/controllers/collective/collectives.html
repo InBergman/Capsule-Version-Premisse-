@@ -1,0 +1,23 @@
+<navigation-directive></navigation-directive>
+
+<div class="container">
+  <div class="row">
+    <div ng-repeat="collective in vm.collectives" class="col-sm-6 col-md-4 col-lg-3 mt-4">
+      <div class="card card-inverse card-info">
+        <catalogue
+         title='collective.collectiveName'
+         email='collective.userRef.userEmail'
+         image='collective.collectiveAvatar'
+         phone='collective.userRef.userPhone'
+         imagepath='vm.imagePath'
+         lookpath='vm.lookpath'
+         date='vm.formatDate(collective.updated)'
+         path='#!/users/'
+         id='collective.userRef._id'
+         show='collective'
+         obj="collective">
+        </catalogue>
+      </div>
+    </div>
+  </div>
+</div>

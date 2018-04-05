@@ -1,0 +1,35 @@
+<navigation-directive></navigation-directive>
+
+<!-- <capsule-select></capsule-select> -->
+
+<center>
+  <form name="vm.capsuleName">
+    <br>
+    <div class="form-group" ng-init='vm.init()'>
+      <div ng-if="vm.success" class="alert alert-success" role="alert">
+        <p>{{ vm.success }}</p>
+      </div>
+      <div ng-if="vm.error" class="alert alert-danger" role="alert">
+        {{ vm.error }}
+      </div>
+      <br>
+    </div>
+    Nom de votre capsule: <br><br><input type="text" class="form" placeholder="Nom de la capsule" ng-model="vm.allForm.name">
+    <br><br> Séléctionnez vos ou votre référents : <br>
+    <div class="checkbox" ng-repeat="admin in vm.admins">
+      <input type="checkbox" ng-model="admin.selected" ng-true-value="'{{admin.username}}'" ng-false-value="''" id="'{{admin.username}}'" /> {{admin.username}}
+    </div><br>
+    <br><br> Sésléctionnez le type de capsule :
+    <select class="selectpicker" ng-model="vm.allForm.type">
+		<option>Privée</option>
+		<option>Institutionnel</option>
+		<option>Classique</option>
+	</select>
+    </div>
+    <br>
+    <div class="text-center col-sm-14">
+      <!-- <button type="submit" class="btn btn-default form-button-post" ng-click="vm.printForm()" >Créer la capsule</button> -->
+      <p><button type="submit" class="btn btn-default form-button-post" ng-click="vm.submit(vm.admins)">Submit</button></p>
+    </div>
+  </form>
+</center>

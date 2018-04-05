@@ -1,0 +1,97 @@
+<navigation-directive></navigation-directive>
+<div ng-init="vm.showUser()">
+  <div class="media">
+    <img class="rounded-circle userImage" ng-src="http://localhost:3000/images/userIcon.png">
+    <div class="media-body">
+      <h4 class="media-heading userLabel">{{vm.user.userForename + ' ' + vm.user.userSurname}}
+        <SUP ng-show='vm.user && !vm.user.hasCapsule' class='newIcon'>(new)</SUP>
+        <div class="span2 drp-btn" style='float:right;'>
+    <div class="btn-group">
+        <a data-toggle="dropdown">
+            <i class="fa fa-cog" style='color:#2FA902;font-size:1.5em;cursor: pointer;'></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a class="dropdown-item" ng-click="vm.modify()">Modifier le compte</a></li>
+          <li><a class="dropdown-item" ng-click="vm.deleteUser()">Supprimer le compte</a></li>
+            <div class="dropdown-divider"></div>
+          <li><a class="dropdown-item" ng-show='!vm.user.status.isArtist'  ng-click="vm.activate('artist')">
+              <i class="fa fa-plus" style='cursor: pointer;color:green;margin-right:0.25em;'></i>
+            Activer l'espace artiste</a></li>
+          <li><a class="dropdown-item" ng-show='!vm.user.status.isPlace' ng-click="vm.activate('place')">
+            <i class="fa fa-plus" style='cursor: pointer;color:green;margin-right:0.25em;'></i>
+            Activer l'espace lieux</a></li>
+          <li><a class="dropdown-item" ng-show='!vm.user.status.isClient' ng-click="vm.activate('client')">
+              <i class="fa fa-plus" style='cursor: pointer;color:green;margin-right:0.25em;'></i>
+            Activer l'espace client</a></li>
+          <li><a class="dropdown-item" ng-show='!vm.user.status.isCollective' ng-click="vm.activate('collective')">
+              <i class="fa fa-plus" style='cursor: pointer;color:green;margin-right:0.25em;'></i>
+            Activer l'espace collectif</a></li>
+          <div class="dropdown-divider"></div>
+        <li><a class="dropdown-item" ng-show='vm.user.status.isArtist'  ng-click="vm.deleteItem('artist')">
+          <i class="fa fa-minus" style='cursor: pointer;color:red;margin-right:0.25em;'></i>
+          Supprimer l'espace artiste</a></li>
+        <li><a class="dropdown-item" ng-show='vm.user.status.isPlace' ng-click="vm.deleteItem('place')">
+            <i class="fa fa-minus" style='cursor: pointer;color:red;margin-right:0.25em;'></i>
+          Supprimer l'espace lieux</a></li>
+        <li><a class="dropdown-item" ng-show='vm.user.status.isClient' ng-click="vm.deleteItem('client')">
+            <i class="fa fa-minus" style='cursor: pointer;color:red;margin-right:0.25em;'></i>
+          Supprimer l'espace client</a></li>
+        <li><a class="dropdown-item" ng-show='vm.user.status.isCollective' ng-click="vm.deleteItem('collective')">
+            <i class="fa fa-minus" style='cursor: pointer;color:red;margin-right:0.25em;'></i>
+          Supprimer l'espace collectif</a></li>
+        </ul>
+    </div>
+</div>
+  <h5 class="userInfos">Créé le {{vm.formatDate(vm.user.created)}}.</h5>
+  <ul class="nav nav-tabs nav-fill flex-column flex-sm-row">
+    <li class="nav-item">
+      <a ng-click="vm.show('details')" class="flex-sm-fill text-sm-center nav-link {{vm.activeTab('details')}}" role="tab">Détails
+      </a>
+    </li>
+    <li ng-show='vm.user.status.isArtist' class="nav-item ">
+      <a ng-click="vm.show('artist')" class="flex-sm-fill text-sm-center nav-link {{vm.activeTab('artist')}}" role="tab">
+        Espace Artiste</a>
+    </li>
+    <li ng-show='vm.user.status.isPlace' class="nav-item">
+      <a ng-click="vm.show('place')" class="flex-sm-fill text-sm-center nav-link {{vm.activeTab('place')}}" role="tab">Espace Lieux</a>
+    </li>
+    <li ng-show='vm.user.status.isClient' class="nav-item">
+      <a ng-click="vm.show('client')" class="flex-sm-fill text-sm-center nav-link {{vm.activeTab('client')}}" role="tab">Espace Client</a>
+    </li>
+    <li ng-show='vm.user.status.isCollective' class="nav-item">
+      <a ng-click="vm.show('collective')" class="flex-sm-fill text-sm-center nav-link {{vm.activeTab('collective')}}" role="tab">Espace Collectif</a>
+    </li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="container" style='padding-top:2em;'>
+<div ng-if='vm.toShow == "details"'>
+   <user-form type='PUT' disabled='vm.disabled' user='vm.user'>
+    </user-form>
+</div>
+<div ng-show='vm.toShow == "artist"'>
+  <artist-form ng-show='!vm.user.artist' type='POST' disabled='vm.disabled' user='vm.user'>
+  </artist-form>
+  <artist-form ng-show='vm.user.artist' type='PUT' disabled='vm.disabled' user='vm.user'>
+  </artist-form>
+</div>
+<div ng-show='vm.toShow == "place"'>
+  <place-form ng-show='!vm.user.place' type='POST' disabled='vm.disabled' user='vm.user'>
+  </place-form>
+  <place-form ng-show='vm.user.place' type='PUT' disabled='vm.disabled' user='vm.user'>
+  </place-form>
+</div>
+<div ng-show='vm.toShow == "client"'>
+  <client-form ng-show='!vm.user.client' type='POST' disabled='vm.disabled' user='vm.user'>
+  </client-form>
+  <client-form ng-show='vm.user.client' type='PUT' disabled='vm.disabled' user='vm.user'>
+  </client-form>
+</div>
+<div ng-show='vm.toShow == "collective"'>
+  <collective-form ng-show='!vm.user.collective' type='POST' disabled='vm.disabled' user='vm.user'>
+</collective-form>
+  <collective-form ng-show='vm.user.collective' type='PUT' disabled='vm.disabled' user='vm.user'>
+  </collective-form>
+</div>
+</div>

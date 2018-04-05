@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="capsule">
+
+<head>
+  <title>Bonjour Capsule</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- MY CSS -->
+  <link href="assets/css/catalogue.css" rel="stylesheet" />
+  <link href="assets/css/body.css" rel="stylesheet" />
+  <link href="assets/css/user.css" rel="stylesheet" />
+  <link href="assets/css/date-picker.css" rel="stylesheet" />
+  <link href="assets/css/card.css" rel="stylesheet" />
+  <link href="assets/css/navbar.css" rel="stylesheet" />
+  <link href="assets/css/forms.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+
+  <body>
+    <div ng-view></div>
+
+    <!-- BOOTSRAP -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- MISC -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/fr.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-material/angular-material.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src='node_modules/angular-jwt/dist/angular-jwt.js'></script>
+    <script src="angular-app/app.js"></script>
+
+    <!-- NAVBAR + JUMBOTRON-->
+    <script src="angular-app/directives/navigation-directive/navigation-directive.js"></script>
+
+    <!-- FACTORIES -->
+    <script src="angular-app/factories/http-methods-factory.js"></script>
+    <script src="angular-app/factories/artist-data-factory.js"></script>
+    <script src="angular-app/factories/user-data-factory.js"></script>
+    <script src="angular-app/factories/place-data-factory.js"></script>
+    <script src="angular-app/factories/client-data-factory.js"></script>
+    <script src="angular-app/factories/collective-data-factory.js"></script>
+    <script src="angular-app/factories/capsule-data-factory.js"></script>
+
+    <!-- FORMS -->
+    <script src='angular-app/directives/forms/artist-form/artist-form-controller.js'></script>
+    <script src='angular-app/directives/forms/place-form/place-form-controller.js'></script>
+    <script src='angular-app/directives/forms/client-form/client-form-controller.js'></script>
+    <script src='angular-app/directives/forms/collective-form/collective-form-controller.js'></script>
+    <script src="angular-app/directives/forms/user-form/user-form-controller.js"></script>
+    <script src='angular-app/directives/forms/artist-form/artist-form-directive.js'></script>
+    <script src='angular-app/directives/forms/place-form/place-form-directive.js'></script>
+    <script src='angular-app/directives/forms/client-form/client-form-directive.js'></script>
+    <script src='angular-app/directives/forms/collective-form/collective-form-directive.js'></script>
+    <script src='angular-app/directives/forms/user-form/user-form-directive.js'></script>
+
+    <!-- DIRECTIVES/SERVICES : misc -->
+    <script src="angular-app/directives/catalogue-directive/catalogue-directive.js"></script>
+    <script src="angular-app/directives/catalogue-directive/catalogue-controller.js"></script>
+    <script src="angular-app/directives/file-input-directive/file-input-directive.js"></script>
+    <script src="angular-app/services/form-requests-service.js"></script>
+
+    <script src="angular-app/directives/capsule-directive/capsule-select-controller.js"></script>
+    <script src="angular-app/directives/capsule-directive/capsule-select-directive.js"></script>
+    <script src="angular-app/directives/capsule-directive/capsule-actors-directive/capsule-actors-controller.js"></script>
+    <script src="angular-app/directives/capsule-directive/capsule-actors-directive/capsule-actors-directive.js"></script>
+
+
+    <!-- CONTROLLERS: js -->
+    <script src="angular-app/controllers/artist/artist-list-controller.js"></script>
+    <script src="angular-app/controllers/client/client-list-controller.js"></script>
+    <script src="angular-app/controllers/collective/collective-list-controller.js"></script>
+    <script src="angular-app/controllers/place/place-list-controller.js"></script>
+    <script src="angular-app/controllers/user/user-list-controller.js"></script>
+    <script src="angular-app/controllers/user/user-display-controller.js"></script>
+    <script src="angular-app/controllers/capsule/capsules-controller.js"></script>
+    <script src="angular-app/controllers/capsule/capsules-profil-controller.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,99 @@
+<navigation-directive></navigation-directive> <br><br>
+<center>
+
+  <div>
+    <h3>Ready</h3> Classique : <input checked="checked" type="checkbox" name="classique" ng-click="vm.CheckBox.ready.classique = !vm.CheckBox.ready.classique"> Institutionnel : <input checked="checked" type="checkbox" name="institutionnel" ng-click="vm.CheckBox.ready.institutionnel = !vm.CheckBox.ready.institutionnel">    Privee : <input checked="checked" type="checkbox" name="privee" ng-click="vm.CheckBox.ready.privee = !vm.CheckBox.ready.privee">
+
+    <div ng-repeat="capsule in vm.capsules">
+      <span ng-if="vm.CheckBox.ready.classique == true
+                        && capsule.type == 'Classique'
+                        && capsule.status == 'Ready'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.ready.institutionnel == true
+                        && capsule.type == 'Institutionnel'
+                        && capsule.status == 'Ready'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.ready.privee == true
+                        && capsule.type == 'Privée'
+                        && capsule.status == 'Ready'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+    </div>
+  </div>
+
+
+  <div>
+    <h3>wip</h3> Classique : <input checked="checked" type="checkbox" name="classique" ng-click="vm.CheckBox.wip.classique = !vm.CheckBox.wip.classique"> Institutionnel : <input checked="checked" type="checkbox" name="institutionnel" ng-click="vm.CheckBox.wip.institutionnel = !vm.CheckBox.wip.institutionnel">    Privee : <input checked="checked" type="checkbox" name="privee" ng-click="vm.CheckBox.wip.privee = !vm.CheckBox.wip.privee">
+
+    <div ng-repeat="capsule in vm.capsules">
+      <span ng-if="vm.CheckBox.wip.classique == true
+                        && capsule.type == 'Classique'
+                        && capsule.status == 'Incomplete'">
+
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.wip.institutionnel == true
+                        && capsule.type == 'Institutionnel'
+                        && capsule.status == 'Incomplete'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.wip.privee == true
+                        && capsule.type == 'Privée'
+                        && capsule.status == 'Incomplete'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+    </div>
+  </div>
+
+
+  <div>
+    <h3>cancel</h3> Classique : <input checked="checked" type="checkbox" name="classique" ng-click="vm.CheckBox.cancel.classique = !vm.CheckBox.cancel.classique"> Institutionnel : <input checked="checked" type="checkbox" name="institutionnel" ng-click="vm.CheckBox.cancel.institutionnel = !vm.CheckBox.cancel.institutionnel">    Privee : <input checked="checked" type="checkbox" name="privee" ng-click="vm.CheckBox.cancel.privee = !vm.CheckBox.cancel.privee">
+
+    <div ng-repeat="capsule in vm.capsules">
+      <span ng-if="vm.CheckBox.cancel.classique == true
+                        && capsule.type == 'Classique'
+                        && capsule.status == 'Cancel'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.cancel.institutionnel == true
+                        && capsule.type == 'Institutionnel'
+                        && capsule.status == 'Cancel'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+      <span ng-if="vm.CheckBox.cancel.privee == true
+                        && capsule.type == 'Privée'
+                        && capsule.status == 'Cancel'">
+                    <capsule-select
+                        what-type = "capsule"
+                        object ="{{capsule}}">
+                    </capsule-select>
+            </span>
+    </div>
+  </div>
+</center>

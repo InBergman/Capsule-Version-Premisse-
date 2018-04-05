@@ -1,0 +1,81 @@
+<form ng-init='vm.init()'>
+  <div ng-if="vm.message" class="alert alert-success" role="alert">
+    <p>{{ vm.message }}</p>
+  </div>
+  <div ng-if="vm.error" class="alert alert-danger" role="alert">
+    {{vm.error}}
+  </div>
+  <div class="container">
+    <form>
+      <div class="form-group row">
+        <label for="userName" class="col-sm-2 col-form-label">Nom du contact</label>
+        <div class="col-sm-5 col-sm-offset-1">
+          <input type="text" class="form-control" id="userForename" placeholder="Prenom" ng-model="vm.user.userForename" required ng-disabled='true'>
+        </div>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="userSurename" placeholder="Nom" ng-model="vm.user.userSurname" required ng-disabled='true'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="placeName" class="col-sm-2 col-form-label">Nom du collectif</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="placeName" placeholder="..." ng-model="vm.collective.collectiveName" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="input-file" class="col-sm-2 col-form-label">Avatar</label>
+        <div class="col-sm-10">
+          <img ng-show="vm.filepreview" ng-src="{{vm.filepreview}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <img ng-show="!vm.filepreview" ng-src="{{vm.collective.collectiveAvatar ? vm.collective.collectiveAvatar : 'http://localhost:3000/images/avatar.png'}}" class="img-responsive rounded-circle avatar" style='display:inline-block;' />
+          <label ng-show='vm.disabled == false' onclick="document.querySelector('#input-file').click()" style='cursor:pointer;'>{{(type == 'PUT' ? "Modifier la" : "Ajouter une")}} photo. </label>
+          <input id='input-file' type="file" fileinput="vm.myFile" filepreview="vm.filepreview" style="display: none" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Adresse</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="l1" placeholder="12 boulevard de la liberation" ng-model="vm.collective.adress.l1" required ng-disabled=vm.disabled>
+          <p class='form-p'>Supplément d'adresse</p>
+          <input type="text" class="form-control" id="l2" placeholder="Res. Messonier" ng-model="vm.collective.adress.l2" required ng-disabled=vm.disabled>
+          <p class='form-p'>Code Postal</p>
+          <input type="text" class="form-control" id="cp" placeholder="93200" ng-model="vm.collective.adress.cp" required ng-disabled=vm.disabled>
+          <p class='form-p'>Ville</p>
+          <input type="text" class="form-control" id="city" placeholder="St-Denis" ng-model="vm.collective.adress.city" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="typeOfContact" class="col-sm-2 col-form-label">Type de contact</label>
+        <div class="col-sm-10">
+          <select style='display:inline-block' ng-model="vm.collective.typeOfContact">
+            <option ng-disabled=vm.disabled value="Propriétaire">Propriétaire</option>
+            <option ng-disabled=vm.disabled value="Responsable">Responsable</option>
+            <option ng-disabled=vm.disabled value="Employé">Employé</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="size" class="col-sm-2 col-form-label">Nombre de personnes</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="size" placeholder="..." ng-model="vm.collective.size" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="siret" class="col-sm-2 col-form-label">Siret</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="siret" placeholder="FR63551445030018" ng-model="vm.collective.siret" required ng-disabled=vm.disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="univers" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" placeholder="Description de l'univers artistique" id="univers" rows="3" ng-model="vm.collective.univers" ng-disabled=vm.disabled></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" ng-show='vm.disabled == false' ng-click="vm.addCollective()" style='margin-bottom:1em;'>{{(type == 'PUT' ? "Modifier" : "Créer")}} le lieux</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</form>

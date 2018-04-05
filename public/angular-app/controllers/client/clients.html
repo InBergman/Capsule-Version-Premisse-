@@ -1,0 +1,23 @@
+<navigation-directive></navigation-directive>
+
+<div class="container">
+  <div class="row">
+    <div ng-repeat="client in vm.clients" class="col-sm-6 col-md-4 col-lg-3 mt-4">
+      <div class="card card-inverse card-info">
+        <catalogue
+         title='client.clientName'
+         email='client.userRef.userEmail'
+         image='client.clientAvatar'
+         phone='client.userRef.userPhone'
+         imagepath='vm.imagePath'
+         lookpath='vm.lookpath'
+         date='vm.formatDate(client.updated)'
+         path='#!/users/'
+         id='client.userRef._id'
+         show='client'
+         obj="client">
+        </catalogue>
+      </div>
+    </div>
+  </div>
+</div>
