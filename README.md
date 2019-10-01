@@ -1,4 +1,4 @@
-# Capsule-Version-Premisse-
+# Capsule Early Dev
 
 ## Developement of the platform intra (SPA)(MVC): 
 
